@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta_title">Medha IT Solutions | Global Tech Services, AI Automations & IT Consulting</title>
+  <meta name="description" data-i18n-placeholder="meta_desc" content="International tech solutions provider specializing in AI automation, custom software, enterprise cloud, and tech consulting. WhatsApp: +8801712813557.">
+  <meta name="keywords" content="Medha IT Solutions, AI Automation, Tech Consulting, Custom Software, Cloud DevOps, Remote Developers, International IT, WhatsApp +8801712813557">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#07090e',
+              card: '#0f172a',
+              primary: '#4f46e5',
+              cyan: '#06b6d4',
+              whatsapp: '#25d366',
+              whatsappDark: '#128c7e'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" class="glass-panel px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700/80 max-w-sm">
+    <div id="toast-icon">
+      <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    </div>
+    <div class="text-xs text-slate-200 font-medium" id="toast-message">Notification message</div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo & Brand -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative w-11 h-11 rounded-xl overflow-hidden border border-cyan-500/40 shadow-lg shadow-cyan-500/10 group-hover:border-cyan-400 transition-all">
+          <img src="assets/images/logo.jpg" alt="Medha IT Solutions Logo" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-heading font-extrabold text-xl tracking-tight text-white group-hover:text-cyan-400 transition-colors">MEDHA</span>
+            <span class="text-xs font-semibold px-1.5 py-0.5 rounded bg-cyan-950/80 text-cyan-400 border border-cyan-800/50">IT</span>
+          </div>
+          <p class="text-[10px] text-slate-400 tracking-wider uppercase font-medium hidden sm:block" data-i18n="brand_tagline">Global Tech Innovation & AI</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#services" class="hover:text-cyan-400 transition-colors" data-i18n="nav_services">Services</a>
+        <a href="#ai-automations" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+          <span data-i18n="nav_ai">AI Automations</span>
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+          </span>
+        </a>
+        <a href="#calculator" class="hover:text-cyan-400 transition-colors" data-i18n="nav_calculator">Quote Calculator</a>
+        <a href="#why-us" class="hover:text-cyan-400 transition-colors" data-i18n="nav_about">Why Us</a>
+        <a href="#faq" class="hover:text-cyan-400 transition-colors" data-i18n="nav_faq">FAQ</a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <!-- Right CTAs & Language Selector -->
+      <div class="flex items-center gap-3">
+
+        <!-- Searchable Language Dropdown Trigger -->
+        <div class="relative">
+          <button id="lang-selector-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 text-xs font-medium text-slate-200 transition-all">
+            <span id="current-lang-flag">🇺🇸</span>
+            <span id="current-lang-label" class="hidden sm:inline">English</span>
+            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+
+          <!-- Searchable Dropdown Menu -->
+          <div id="lang-dropdown-menu" class="lang-dropdown-menu">
+            <div class="p-2.5 border-b border-slate-800 sticky top-0 bg-slate-900 z-10">
+              <div class="relative">
+                <input type="text" id="lang-search-input" placeholder="Search language..." class="w-full text-xs px-2.5 py-1.5 rounded-lg bg-slate-800/80 text-slate-200 border border-slate-700 focus:outline-none focus:border-cyan-500">
+                <svg class="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              </div>
+            </div>
+            <div id="lang-options-list" class="divide-y divide-slate-800/50">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Saved Inquiries Viewer Modal Trigger -->
+        <button class="open-inquiries-modal-btn p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 text-slate-300 hover:text-cyan-400 transition-all text-xs flex items-center gap-1.5" title="View Saved Inquiries">
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+          <span class="hidden md:inline" data-i18n="nav_leads">Saved</span>
+        </button>
+
+        <!-- Direct WhatsApp CTA Button (Desktop & Tablet) -->
+        <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-xs shadow-lg shadow-emerald-500/20 transition-all transform hover:-translate-y-0.5">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+          <span data-i18n="nav_whatsapp">WhatsApp Chat</span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-menu" class="hidden lg:hidden glass-panel border-b border-slate-800 px-6 py-5 space-y-4">
+      <a href="#services" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_services">Services</a>
+      <a href="#ai-automations" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_ai">AI Automations</a>
+      <a href="#calculator" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_calculator">Quote Calculator</a>
+      <a href="#why-us" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_about">Why Us</a>
+      <a href="#faq" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="#contact" class="block text-slate-200 font-medium mobile-nav-link" data-i18n="nav_contact">Contact</a>
+      <div class="pt-3 border-t border-slate-800">
+        <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-sm">
+          <span>WhatsApp: +8801712813557</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+      <!-- Background Cyber Light Effects -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+      <div class="absolute top-1/3 left-1/4 w-[400px] h-[300px] bg-indigo-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Copy & Actions -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            
+            <!-- Global Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-semibold text-cyan-400">
+              <span class="whatsapp-beacon"></span>
+              <span data-i18n="badge_global">Global Tech Services • 24/7 Rapid Delivery</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+              <span data-i18n="hero_headline">Transform Your Business With Next-Gen AI & Tech Solutions</span>
+            </h1>
+
+            <!-- Subheadline: Responsive (Desktop detailed vs Mobile concise) -->
+            <p class="desktop-verbose text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed" data-i18n="hero_subheadline_desktop">
+              We engineer enterprise-grade AI automations, custom software, cloud infrastructure, and provide elite IT consulting for ambitious businesses worldwide.
+            </p>
+            <p class="mobile-concise text-sm text-slate-300 font-medium" data-i18n="hero_subheadline_mobile">
+              Elite AI automations, custom software & international tech consulting. Fast turnaround.
+            </p>
+
+            <!-- Mobile Quick Bullets (Clean & Scannable for mobile view) -->
+            <div class="mobile-concise pt-1">
+              <div class="flex flex-wrap gap-2 justify-center">
+                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-cyan-300 font-medium" data-i18n="mobile_feature_1">⚡ AI Workflow Automation</span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-300 font-medium" data-i18n="mobile_feature_2">🚀 Custom Web & Mobile Apps</span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-indigo-300 font-medium" data-i18n="mobile_feature_3">🌍 Global Tech Teams & Consulting</span>
+              </div>
+            </div>
+
+            <!-- CTAs with primary WhatsApp link -->
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <!-- Primary WhatsApp Button -->
+              <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 whatsapp-pulse transition-all transform hover:-translate-y-0.5">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="hero_cta_whatsapp">Chat on WhatsApp (+8801712813557)</span>
+              </a>
+
+              <!-- Secondary Calculator Button -->
+              <a href="#calculator" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl glass-panel glass-panel-hover text-slate-200 hover:text-white font-semibold text-sm">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <span data-i18n="hero_cta_quote">Estimate Project Cost</span>
+              </a>
+            </div>
+
+            <!-- Trust Metrics Bar -->
+            <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/80">
+              <div>
+                <div class="text-xl sm:text-2xl font-bold text-white font-heading" data-i18n="hero_stat_projects">150+</div>
+                <div class="text-xs text-slate-400">Projects Shipped</div>
+              </div>
+              <div>
+                <div class="text-xl sm:text-2xl font-bold text-cyan-400 font-heading" data-i18n="hero_stat_countries">18+</div>
+                <div class="text-xs text-slate-400">Countries Served</div>
+              </div>
+              <div>
+                <div class="text-xl sm:text-2xl font-bold text-emerald-400 font-heading" data-i18n="hero_stat_uptime">99.9%</div>
+                <div class="text-xs text-slate-400">Delivery Rate</div>
+              </div>
+              <div>
+                <div class="text-xl sm:text-2xl font-bold text-indigo-400 font-heading" data-i18n="hero_stat_response">&lt; 5 Min</div>
+                <div class="text-xs text-slate-400">WhatsApp Reply</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Showcase -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <!-- Glow background -->
+              <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 rounded-3xl blur-xl opacity-40"></div>
+              
+              <div class="relative rounded-2xl overflow-hidden glass-panel border border-cyan-500/30 shadow-2xl">
+                <img src="assets/images/hero-ai.jpg" alt="Medha IT Solutions AI Hub" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
+                
+                <!-- Floating WhatsApp Status Card -->
+                <div class="absolute bottom-4 left-4 right-4 glass-panel p-3.5 rounded-xl border border-emerald-500/40 bg-slate-900/90 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative">
+                      <div class="w-10 h-10 rounded-full bg-emerald-600/30 border border-emerald-400 flex items-center justify-center text-emerald-400">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                      </div>
+                      <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-slate-900"></span>
+                    </div>
+                    <div>
+                      <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                        <span>Direct WhatsApp Channel</span>
+                        <span class="text-[10px] px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-700/50">Online</span>
+                      </div>
+                      <div class="text-[11px] text-slate-300 font-mono">+8801712813557</div>
+                    </div>
+                  </div>
+                  <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold">
+                    Chat Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION (All Tech Related Services) -->
+    <section id="services" class="py-20 bg-slate-950/70 border-t border-slate-900 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-xs font-semibold tracking-wider uppercase text-cyan-400" data-i18n="services_tag">What We Build & Deliver</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="services_title">End-to-End International Tech Services</h2>
+          <p class="desktop-verbose text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="services_subtitle_desktop">
+            From autonomous AI agents and cloud modernization to dedicated offshore engineering squads, we solve your deepest technical bottlenecks.
+          </p>
+          <p class="mobile-concise text-slate-400 text-xs" data-i18n="services_subtitle_mobile">
+            Autonomous AI, custom web/app development, cloud & global tech staffing.
+          </p>
+        </div>
+
+        <!-- Services Grid (6 Core International Offerings) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          
+          <!-- Service 1: AI Automation & Agents -->
+          <div id="ai-automations" class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors" data-i18n="srv1_title">AI Automations & LLM Agents</h3>
+              
+              <!-- Responsive Text: Desktop vs Mobile -->
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv1_desc_desktop">
+                Automate repetitive customer support, document processing, intelligent lead qualification, and CRM workflows using OpenAI, LangChain, Anthropic, and custom machine learning pipelines.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv1_desc_mobile">
+                Intelligent autonomous agents, LLM integrations & workflow automation to cut manual work by 80%.
+              </p>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-cyan-300" data-i18n="srv1_tag1">Autonomous Agents</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-cyan-300" data-i18n="srv1_tag2">Custom LLMs</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-cyan-300" data-i18n="srv1_tag3">Workflow Bots</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="AI Automations & LLM Agents">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv1_action">Inquire About AI</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">24/7 Auto</span>
+            </div>
+          </div>
+
+          <!-- Service 2: Custom Web & Mobile Apps -->
+          <div class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-indigo-950/60 border border-indigo-500/40 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors" data-i18n="srv2_title">Full-Stack Web & Mobile Apps</h3>
+              
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv2_desc_desktop">
+                High-performance SaaS platforms, enterprise portals, React/Vue/Node ecosystems, and native iOS & Android applications built for massive scalability and speed.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv2_desc_mobile">
+                Scalable SaaS, mobile apps (iOS/Android), and robust enterprise portals built for speed.
+              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-indigo-300" data-i18n="srv2_tag1">Next.js / Node</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-indigo-300" data-i18n="srv2_tag2">iOS & Android</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-indigo-300" data-i18n="srv2_tag3">SaaS Platforms</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="Full-Stack Web & Mobile Apps">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv2_action">Build My Software</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">Agile Sprints</span>
+            </div>
+          </div>
+
+          <!-- Service 3: IT Consulting & Strategy -->
+          <div class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors" data-i18n="srv3_title">Enterprise IT Consulting & Strategy</h3>
+              
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv3_desc_desktop">
+                Fractional CTO services, digital transformation roadmaps, architectural reviews, software cost reduction, and security compliance audits for scaling brands.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv3_desc_mobile">
+                Fractional CTO advisory, architecture reviews, legacy system upgrades & cost optimization.
+              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-emerald-300" data-i18n="srv3_tag1">Fractional CTO</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-emerald-300" data-i18n="srv3_tag2">Architecture Review</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-emerald-300" data-i18n="srv3_tag3">Cost Optimization</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="Enterprise IT Consulting & Strategy">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv3_action">Book Consultation</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">Strategic ROI</span>
+            </div>
+          </div>
+
+          <!-- Service 4: Cloud & DevOps -->
+          <div class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-950/60 border border-sky-500/40 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors" data-i18n="srv4_title">Cloud Infrastructure & DevOps</h3>
+              
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv4_desc_desktop">
+                Zero-downtime CI/CD pipelines, Docker & Kubernetes containerization, AWS, Google Cloud & Azure cloud architecture with 24/7 monitoring and auto-scaling.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv4_desc_mobile">
+                AWS/GCP/Azure migrations, CI/CD automated pipelines, Kubernetes & high-availability cloud.
+              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-sky-300" data-i18n="srv4_tag1">AWS / Azure / GCP</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-sky-300" data-i18n="srv4_tag2">Docker & K8s</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-sky-300" data-i18n="srv4_tag3">Zero Downtime</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="Cloud Infrastructure & DevOps">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv4_action">Optimize Cloud</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">99.99% SLA</span>
+            </div>
+          </div>
+
+          <!-- Service 5: Dedicated Remote Tech Teams -->
+          <div class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors" data-i18n="srv5_title">Dedicated Remote Tech Teams</h3>
+              
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv5_desc_desktop">
+                Scale your engineering velocity instantly. Hire pre-vetted senior software engineers, AI developers, QA specialists, and DevOps architects ready in 48 hours.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv5_desc_mobile">
+                Hire pre-vetted senior developers, AI engineers & QA experts ready within 48 hours.
+              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-purple-300" data-i18n="srv5_tag1">Staff Augmentation</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-purple-300" data-i18n="srv5_tag2">Pre-vetted Seniors</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-purple-300" data-i18n="srv5_tag3">Flexible Contracts</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="Dedicated Remote Tech Teams">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv5_action">Hire Tech Talent</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">Ready in 48h</span>
+            </div>
+          </div>
+
+          <!-- Service 6: Cyber Security & Code Audits -->
+          <div class="service-card glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between group">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-950/60 border border-amber-500/40 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors" data-i18n="srv6_title">Cyber Security & Code Audits</h3>
+              
+              <p class="desktop-text text-sm text-slate-300 leading-relaxed" data-i18n="srv6_desc_desktop">
+                Vulnerability assessments, penetration testing, compliance (GDPR/HIPAA/SOC2), smart contract audits, and hardening your data infrastructure against modern cyber threats.
+              </p>
+              <p class="mobile-text text-xs text-slate-300" data-i18n="srv6_desc_mobile">
+                Pen-testing, vulnerability audits, GDPR/SOC2 compliance & hardened server protection.
+              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-amber-300" data-i18n="srv6_tag1">Vulnerability Scan</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-amber-300" data-i18n="srv6_tag2">Penetration Testing</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-amber-300" data-i18n="srv6_tag3">Compliance</span>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <button class="service-inquire-btn text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors" data-service="Cyber Security & Code Audits">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                <span data-i18n="srv6_action">Request Audit</span>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">Zero Trust</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US (One Direct WhatsApp to get everything done) -->
+    <section id="why-us" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-semibold tracking-wider uppercase text-emerald-400" data-i18n="why_tag">Why Medha IT Solutions</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight" data-i18n="why_title">
+              One Direct WhatsApp To Get Everything Done
+            </h2>
+            <p class="desktop-verbose text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="why_subtitle_desktop">
+              No bureaucratic gatekeepers or lengthy ticket queues. Reach out to our senior technical lead directly via WhatsApp (+8801712813557) and get answers in minutes.
+            </p>
+            <p class="mobile-concise text-slate-300 text-xs" data-i18n="why_subtitle_mobile">
+              Direct access to senior tech leads via WhatsApp. Fast turnaround, transparent pricing.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white" data-i18n="why_point1_title">Instant Direct Communication</h4>
+                  <p class="desktop-verbose text-xs text-slate-400 mt-1" data-i18n="why_point1_desc_desktop">Direct access via WhatsApp (+8801712813557) ensures immediate replies, live demo updates, and transparent milestone tracking.</p>
+                  <p class="mobile-concise text-xs text-slate-400 mt-0.5" data-i18n="why_point1_desc_mobile">Direct WhatsApp contact (+8801712813557) for instant answers & rapid updates.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white" data-i18n="why_point2_title">Global Enterprise Standard</h4>
+                  <p class="desktop-verbose text-xs text-slate-400 mt-1" data-i18n="why_point2_desc_desktop">We adhere strictly to international clean-code standards, robust security frameworks, and seamless English/multilingual collaboration.</p>
+                  <p class="mobile-concise text-xs text-slate-400 mt-0.5" data-i18n="why_point2_desc_mobile">Clean architecture, rigorous security protocols & global enterprise delivery.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white" data-i18n="why_point3_title">Flexible & Cost-Efficient</h4>
+                  <p class="desktop-verbose text-xs text-slate-400 mt-1" data-i18n="why_point3_desc_desktop">Save up to 60% compared to Western agency overhead while receiving Silicon Valley caliber technical execution.</p>
+                  <p class="mobile-concise text-xs text-slate-400 mt-0.5" data-i18n="why_point3_desc_mobile">Up to 60% cost efficiency with top-tier international quality.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg transition-all">
+                <span>Start Direct Chat: +8801712813557</span>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Showcase Card -->
+          <div class="lg:col-span-7">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between text-cyan-400">
+                  <span class="text-xs font-mono">01 // AUTOMATION</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h4 class="text-base font-bold text-white">AI-Powered Ops</h4>
+                <p class="text-xs text-slate-400">Autonomous data extraction, smart ticketing bots, and LangChain agents that run 24/7 with zero human oversight.</p>
+              </div>
+
+              <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between text-indigo-400">
+                  <span class="text-xs font-mono">02 // SCALE</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <h4 class="text-base font-bold text-white">Full-Stack Agility</h4>
+                <p class="text-xs text-slate-400">Modern tech stacks (Next.js, Python, Node, React Native, Kubernetes) crafted for rapid iteration and rock-solid stability.</p>
+              </div>
+
+              <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between text-emerald-400">
+                  <span class="text-xs font-mono">03 // SPEED</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h4 class="text-base font-bold text-white">48h Team Onboarding</h4>
+                <p class="text-xs text-slate-400">Deploy vetted senior software engineers to your codebase in under two days, with zero recruitment overhead.</p>
+              </div>
+
+              <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between text-amber-400">
+                  <span class="text-xs font-mono">04 // PRIVACY</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h4 class="text-base font-bold text-white">Strict IP & NDAs</h4>
+                <p class="text-xs text-slate-400">100% intellectual property transfer, legally binding global NDAs, and enterprise privacy guarantees.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PROJECT SCOPE & COST ESTIMATOR -->
+    <section id="calculator" class="py-20 bg-slate-950/80 border-t border-slate-900 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <span class="text-xs font-semibold tracking-wider uppercase text-cyan-400" data-i18n="calc_tag">Interactive Estimator</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="calc_title">Calculate Your Project Scope & Timeline</h2>
+          <p class="desktop-verbose text-slate-300 text-sm leading-relaxed" data-i18n="calc_subtitle_desktop">
+            Select your project requirements to calculate estimated turnaround time, tech stack, and send your scope straight to our WhatsApp for an instant formal quote.
+          </p>
+          <p class="mobile-concise text-slate-400 text-xs" data-i18n="calc_subtitle_mobile">
+            Choose options to get instant timeline & budget estimate.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto glass-panel p-6 sm:p-10 rounded-2xl border border-slate-800 shadow-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Service Selection -->
+            <div class="space-y-2">
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" data-i18n="calc_lbl_service">Choose Service:</label>
+              <select id="calc-service" class="w-full glass-input p-3 rounded-xl text-sm text-white">
+                <option value="ai">AI Automation & LLM Agents</option>
+                <option value="software">Custom Web & Mobile Apps</option>
+                <option value="cloud">Cloud DevOps & Migration</option>
+                <option value="team">Dedicated Engineering Team</option>
+                <option value="consulting">IT Consulting & Architecture</option>
+              </select>
+            </div>
+
+            <!-- Project Scale -->
+            <div class="space-y-2">
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" data-i18n="calc_lbl_scale">Project Scope / Scale:</label>
+              <select id="calc-scale" class="w-full glass-input p-3 rounded-xl text-sm text-white">
+                <option value="mvp">Startup MVP / Core Feature</option>
+                <option value="growth" selected>Growing Business / Production</option>
+                <option value="enterprise">Enterprise Scaled Architecture</option>
+              </select>
+            </div>
+
+            <!-- Delivery Speed -->
+            <div class="space-y-2">
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" data-i18n="calc_lbl_speed">Required Delivery Speed:</label>
+              <select id="calc-speed" class="w-full glass-input p-3 rounded-xl text-sm text-white">
+                <option value="standard" selected>Standard Turnaround</option>
+                <option value="express">Fast-Track Sprint (Urgent)</option>
+                <option value="retainer">Monthly Continuous Retainer</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div class="mt-8 p-6 rounded-xl bg-slate-900/90 border border-cyan-500/30 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div class="space-y-1">
+              <div class="text-xs text-slate-400" data-i18n="calc_res_timeline">Estimated Timeline:</div>
+              <div id="calc-result-timeline" class="text-base sm:text-lg font-bold text-cyan-400 font-heading">3 - 5 Weeks</div>
+            </div>
+            <div class="space-y-1 border-t sm:border-t-0 sm:border-x border-slate-800 pt-3 sm:pt-0">
+              <div class="text-xs text-slate-400" data-i18n="calc_res_team">Team Composition:</div>
+              <div id="calc-result-team" class="text-xs sm:text-sm font-semibold text-slate-200">Senior AI Engineer + LangChain Architect</div>
+            </div>
+            <div class="space-y-1 border-t sm:border-t-0 border-slate-800 pt-3 sm:pt-0">
+              <div class="text-xs text-slate-400" data-i18n="calc_res_est">Estimated Starting Range:</div>
+              <div id="calc-result-estimate" class="text-lg sm:text-xl font-extrabold text-emerald-400 font-heading">$1,900 - $4,200 USD</div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button id="calc-save-estimate" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 flex items-center justify-center gap-2 transition-all">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+              <span data-i18n="calc_btn_save">Save Estimate Locally</span>
+            </button>
+
+            <button id="calc-send-whatsapp" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+              <span data-i18n="calc_btn_whatsapp">Send Scope to WhatsApp (+8801712813557)</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 space-y-2">
+          <span class="text-xs font-semibold tracking-wider uppercase text-cyan-400">Knowledge & Answers</span>
+          <h2 class="text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="space-y-4">
+          
+          <!-- FAQ Item 1 -->
+          <div class="faq-item glass-panel rounded-xl border border-slate-800 overflow-hidden">
+            <button class="faq-question w-full p-5 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white hover:text-cyan-400 transition-colors">
+              <span>How do we communicate and track international projects?</span>
+              <svg class="faq-icon w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+              We primarily communicate directly on <strong>WhatsApp (+8801712813557)</strong> for real-time messaging, fast question resolution, and audio/video syncs. For task management, we use GitHub, Jira, or Trello, providing live demo staging links for continuous review.
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item glass-panel rounded-xl border border-slate-800 overflow-hidden">
+            <button class="faq-question w-full p-5 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white hover:text-cyan-400 transition-colors">
+              <span>What AI automation tools and LLM frameworks do you build with?</span>
+              <svg class="faq-icon w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+              We build production agents using OpenAI GPT-4o, Claude 3.5 Sonnet, Llama 3, LangChain, LlamaIndex, DeepSeek, and custom vector databases (Pinecone, Qdrant). We implement full autonomous workflows with CRM, Zapier, Make, and webhook integrations.
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item glass-panel rounded-xl border border-slate-800 overflow-hidden">
+            <button class="faq-question w-full p-5 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white hover:text-cyan-400 transition-colors">
+              <span>What international payment methods do you accept?</span>
+              <svg class="faq-icon w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+              We accept international bank wire transfers (SWIFT/SEPA), Wise, Payoneer, Stripe credit cards, and major crypto payments (USDT/USDC/BTC) for seamless global collaboration.
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item glass-panel rounded-xl border border-slate-800 overflow-hidden">
+            <button class="faq-question w-full p-5 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white hover:text-cyan-400 transition-colors">
+              <span>How fast can a dedicated developer or engineering squad start?</span>
+              <svg class="faq-icon w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+              Pre-vetted senior software engineers and AI developers can be matched and start working in your repository within 24 to 48 hours of contract signing.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION (Stored Locally & Syncs to WhatsApp) -->
+    <section id="contact" class="py-20 bg-slate-950/90 border-t border-slate-900 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- Left Info Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-semibold tracking-wider uppercase text-cyan-400" data-i18n="contact_tag">Direct Inquiries</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="contact_title">Let's Build Something Exceptional Together</h2>
+            <p class="desktop-verbose text-slate-300 text-sm leading-relaxed" data-i18n="contact_desc_desktop">
+              Submit your inquiry below or click our WhatsApp button. Our solutions team responds in under 5 minutes with a comprehensive action plan.
+            </p>
+            <p class="mobile-concise text-slate-400 text-xs" data-i18n="contact_desc_mobile">
+              Fill the form or tap WhatsApp to get instant feedback & proposal.
+            </p>
+
+            <!-- Direct Contact Cards -->
+            <div class="space-y-3 pt-2">
+              <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="glass-panel p-4 rounded-xl border border-emerald-500/30 flex items-center gap-4 hover:border-emerald-400 transition-all group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">WhatsApp & Direct Phone</div>
+                  <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">+8801712813557</div>
+                </div>
+              </a>
+
+              <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Official Inquiries Email</div>
+                  <div class="text-sm font-semibold text-white font-mono">contact@medhait.com</div>
+                </div>
+              </div>
+
+              <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Global Operating Hours</div>
+                  <div class="text-sm font-semibold text-white">24/7 Worldwide Support (All Timezones)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Form Column -->
+          <div class="lg:col-span-7">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+              <form id="medha-contact-form" class="space-y-4">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="space-y-1.5">
+                    <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_name">Your Name *</label>
+                    <input type="text" name="name" required placeholder="e.g. John Doe / Sarah Smith" data-i18n-placeholder="form_ph_name" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+                  </div>
+                  <div class="space-y-1.5">
+                    <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_email">Business Email</label>
+                    <input type="email" name="email" placeholder="name@company.com" data-i18n-placeholder="form_ph_email" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="space-y-1.5">
+                    <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_phone">WhatsApp / Phone Number *</label>
+                    <input type="text" name="phone" required placeholder="+880 1712 813557" data-i18n-placeholder="form_ph_phone" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+                  </div>
+                  <div class="space-y-1.5">
+                    <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_service">Service Required</label>
+                    <select name="service" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+                      <option value="AI Automation & LLM Agents">AI Automation & LLM Agents</option>
+                      <option value="Custom Web & Mobile Apps">Custom Web & Mobile Apps</option>
+                      <option value="Enterprise IT Consulting">Enterprise IT Consulting</option>
+                      <option value="Cloud Infrastructure & DevOps">Cloud Infrastructure & DevOps</option>
+                      <option value="Dedicated Remote Tech Team">Dedicated Remote Tech Team</option>
+                      <option value="Cyber Security & Audit">Cyber Security & Audit</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_budget">Budget Range (USD)</label>
+                  <select name="budget" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+                    <option value="Flexible / Under $2,500">Flexible / Under $2,500 USD</option>
+                    <option value="$2,500 - $5,000">$2,500 - $5,000 USD</option>
+                    <option value="$5,000 - $15,000">$5,000 - $15,000 USD</option>
+                    <option value="$15,000+ Enterprise">$15,000+ USD Enterprise</option>
+                  </select>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-semibold text-slate-300" data-i18n="form_lbl_details">Project Details / Requirements</label>
+                  <textarea name="message" rows="3" placeholder="Describe your project, goals, or current technical challenges..." data-i18n-placeholder="form_ph_details" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
+                </div>
+
+                <!-- Form Action Buttons -->
+                <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                  <button type="button" id="form-send-whatsapp-direct" class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+                    <span data-i18n="form_btn_whatsapp">Send Directly via WhatsApp</span>
+                  </button>
+
+                  <button type="submit" class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 flex items-center justify-center gap-2 transition-all">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                    <span data-i18n="form_btn_submit">Save & Submit Inquiry</span>
+                  </button>
+                </div>
+
+                <p class="text-[11px] text-slate-500 text-center pt-2" data-i18n="form_note">
+                  Data stored locally in your browser storage & cookies. No unnecessary server databases.
+                </p>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-28 md:pb-16 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-2.5">
+            <img src="assets/images/logo.jpg" alt="Medha IT Logo" class="w-9 h-9 rounded-lg border border-cyan-500/40 object-cover">
+            <span class="font-heading font-extrabold text-lg text-white tracking-tight">MEDHA IT</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="footer_desc">
+            Medha IT Solutions is an international technology and AI automation consultancy providing end-to-end digital engineering and advisory services worldwide.
+          </p>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm" data-i18n="footer_services">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#services" class="hover:text-cyan-400 transition-colors">AI Automations & LLM Agents</a></li>
+            <li><a href="#services" class="hover:text-cyan-400 transition-colors">Full-Stack Web & Mobile Apps</a></li>
+            <li><a href="#services" class="hover:text-cyan-400 transition-colors">Cloud Infrastructure & DevOps</a></li>
+            <li><a href="#services" class="hover:text-cyan-400 transition-colors">Enterprise IT Consulting</a></li>
+            <li><a href="#services" class="hover:text-cyan-400 transition-colors">Dedicated Remote Tech Teams</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Quick Navigation -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm" data-i18n="footer_quick_links">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#ai-automations" class="hover:text-cyan-400 transition-colors">AI Capabilities</a></li>
+            <li><a href="#calculator" class="hover:text-cyan-400 transition-colors">Cost Estimator</a></li>
+            <li><a href="#why-us" class="hover:text-cyan-400 transition-colors">Why Choose Medha IT</a></li>
+            <li><a href="#faq" class="hover:text-cyan-400 transition-colors">Frequently Asked Questions</a></li>
+            <li><a href="#" class="open-inquiries-modal-btn hover:text-cyan-400 transition-colors">Saved Inquiries (Browser Storage)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & WhatsApp Info -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm" data-i18n="footer_contact_info">Direct Contact</h4>
+          <div class="space-y-2">
+            <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="block font-mono text-emerald-400 font-bold hover:underline" data-i18n="footer_phone">
+              WhatsApp & Call: +8801712813557
+            </a>
+            <p class="text-slate-400" data-i18n="footer_available">Available 24/7 for Global Clients</p>
+            <div class="pt-2">
+              <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-medium text-[11px]">
+                <span class="whatsapp-beacon"></span>
+                <span>Live Chat Support</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+        <p data-i18n="footer_copyright">© 2026 Medha IT Solutions. All rights reserved.</p>
+        <p class="text-[11px]">Designed for high-converting international technology and AI consultancy.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       FLOATING WHATSAPP BUTTON & INTERACTIVE CHAT POPUP MODAL
+       ============================================================= -->
+  <div id="floating-whatsapp-container">
+    <button id="floating-whatsapp-btn" class="whatsapp-float-btn whatsapp-pulse relative" aria-label="Open WhatsApp Chat">
+      <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+      <!-- Online dot badge -->
+      <span class="absolute top-0 right-0 w-4 h-4 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+    </button>
+  </div>
+
+  <!-- Interactive WhatsApp Chat Modal -->
+  <div id="whatsapp-modal" class="glass-panel rounded-2xl border border-emerald-500/40 shadow-2xl overflow-hidden bg-slate-900">
+    <!-- Header -->
+    <div class="p-4 bg-emerald-700/90 text-white flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <img src="assets/images/logo.jpg" alt="Medha IT" class="w-10 h-10 rounded-full border border-white/40 object-cover">
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-300 rounded-full border border-emerald-800"></span>
+        </div>
+        <div>
+          <div class="text-sm font-bold flex items-center gap-1">
+            <span data-i18n="widget_title">Medha IT Solutions Support</span>
+          </div>
+          <p class="text-[10px] text-emerald-100" data-i18n="widget_reply_time">Typically replies in under 5 minutes</p>
+        </div>
+      </div>
+      <button id="whatsapp-modal-close" class="text-emerald-100 hover:text-white p-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="p-4 space-y-3 bg-slate-950/80">
+      <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-200">
+        👋 <strong>Hello!</strong> Welcome to Medha IT Solutions. How can our technical specialists assist you today? Choose a quick topic or type your message below.
+      </div>
+
+      <!-- Quick prompt chips -->
+      <div class="flex flex-wrap gap-1.5">
+        <button type="button" class="wa-prompt-chip text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 transition-colors" data-prompt="Hello! I need an AI Automation & Chatbot solution for my business." data-i18n="widget_chip_ai">
+          🤖 Need AI Automation & LLM
+        </button>
+        <button type="button" class="wa-prompt-chip text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 transition-colors" data-prompt="Hello! I want to build a custom web platform / mobile app." data-i18n="widget_chip_web">
+          💻 Custom Web / App Project
+        </button>
+        <button type="button" class="wa-prompt-chip text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-purple-300 border border-slate-700 transition-colors" data-prompt="Hello! I want to hire a dedicated remote engineering team." data-i18n="widget_chip_team">
+          👥 Hire Dedicated Tech Team
+        </button>
+        <button type="button" class="wa-prompt-chip text-[11px] px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 transition-colors" data-prompt="Hello! I need an urgent project quote and architecture review." data-i18n="widget_chip_urgent">
+          ⚡ Urgent Quote & Review
+        </button>
+      </div>
+
+      <!-- Composer Input -->
+      <div class="space-y-2 pt-1">
+        <textarea id="whatsapp-custom-prompt" rows="2" placeholder="Type your project details or question..." data-i18n-placeholder="widget_prompt_placeholder" class="w-full glass-input p-2.5 rounded-xl text-xs text-white"></textarea>
+        
+        <button id="whatsapp-modal-send" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+          <span data-i18n="widget_btn_send">Send on WhatsApp (+8801712813557)</span>
+        </button>
+      </div>
+
+      <div class="text-center pt-1">
+        <a href="tel:+8801712813557" class="text-[11px] text-slate-400 hover:text-white flex items-center justify-center gap-1">
+          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          <span data-i18n="widget_quick_call">Call Us: +8801712813557</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       SAVED INQUIRIES & LOCAL LEADS MODAL (CLIENT-SIDE CRM)
+       ============================================================= -->
+  <div id="inquiries-history-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-2xl max-h-[85vh] rounded-2xl border border-slate-700 bg-slate-900 flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Browser Saved Inquiries & Quotes</h3>
+            <p class="text-[11px] text-slate-400">Persisted locally in your browser storage & cookies</p>
+          </div>
+        </div>
+        <button id="inquiries-modal-close" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Inquiries List -->
+      <div id="inquiries-list-container" class="p-5 overflow-y-auto space-y-3 flex-1">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
+        <button id="clear-inquiries-btn" class="text-xs text-red-400 hover:text-red-300 font-medium">Clear All</button>
+        <button id="export-inquiries-csv" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Export as CSV
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       MOBILE DOCKED QUICK BOTTOM BAR
+       Optimized for Mobile Users: Quick WhatsApp, Call, Estimate, Lang
+       ============================================================= -->
+  <div id="mobile-bottom-bar" class="fixed bottom-0 left-0 right-0 z-40 glass-panel border-t border-slate-800 bg-slate-950/95 px-4 py-2.5 items-center justify-between text-center hidden">
+    <!-- WhatsApp Action -->
+    <a href="https://api.whatsapp.com/send/?phone=8801712813557&text=From%20Medha%20IT%20Website%20Inquery&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="flex-1 flex flex-col items-center justify-center text-emerald-400 hover:text-emerald-300">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.42-.101.825z"/></svg>
+      <span class="text-[10px] font-semibold mt-0.5">WhatsApp</span>
+    </a>
+
+    <!-- Direct Call Action -->
+    <a href="tel:+8801712813557" class="flex-1 flex flex-col items-center justify-center text-cyan-400 hover:text-cyan-300">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+      <span class="text-[10px] font-semibold mt-0.5">Call Us</span>
+    </a>
+
+    <!-- Calculator Action -->
+    <a href="#calculator" class="flex-1 flex flex-col items-center justify-center text-indigo-400 hover:text-indigo-300">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+      <span class="text-[10px] font-semibold mt-0.5">Estimate</span>
+    </a>
+
+    <!-- Quick Language Trigger -->
+    <button id="mobile-lang-btn" class="flex-1 flex flex-col items-center justify-center text-slate-300 hover:text-white">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+      <span class="text-[10px] font-semibold mt-0.5">Language</span>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ip-detector.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+/* Medha IT Solutions - Master Stylesheet
+   Luxury High-Tech Dark Cyber Theme with Glassmorphism, 
+   Pulsating WhatsApp Visuals, and Mobile-Optimized Layouts */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+  
+  --color-bg-base: #07090e;
+  --color-bg-card: rgba(15, 23, 42, 0.75);
+  --color-primary: #4f46e5;
+  --color-primary-glow: rgba(79, 70, 229, 0.35);
+  --color-cyan: #06b6d4;
+  --color-cyan-glow: rgba(6, 182, 212, 0.3);
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #128c7e;
+  --color-whatsapp-glow: rgba(37, 211, 102, 0.4);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(6, 182, 212, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-base);
+  color: #f1f5f9;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 35%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(37, 211, 102, 0.06) 0%, transparent 50%),
+    #07090e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(13, 19, 33, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 16px 36px -10px rgba(6, 182, 212, 0.15);
+}
+
+.glass-input {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* Glowing text gradients */
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* WhatsApp Pulsing Buttons & Beacons */
+.whatsapp-pulse {
+  animation: pulse-ring 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-beacon {
+  width: 10px;
+  height: 10px;
+  background-color: #25d366;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.whatsapp-beacon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Floating WhatsApp Button */
+#floating-whatsapp-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+}
+
+.whatsapp-float-btn {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px -4px rgba(37, 211, 102, 0.5);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.1) rotate(6deg);
+  box-shadow: 0 14px 30px -2px rgba(37, 211, 102, 0.7);
+}
+
+/* Floating Chat Modal */
+#whatsapp-modal {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#whatsapp-modal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Searchable Language Dropdown */
+.lang-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 260px;
+  max-height: 380px;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  z-index: 1100;
+  display: none;
+}
+
+.lang-dropdown-menu.active {
+  display: block;
+  animation: dropdown-fade 0.2s ease-out;
+}
+
+@keyframes dropdown-fade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 0.92rem;
+}
+
+.lang-item:hover {
+  background: rgba(79, 70, 229, 0.18);
+  color: #38bdf8;
+}
+
+.lang-item.selected {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .lang-dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] #floating-whatsapp-container {
+  right: auto;
+  left: 28px;
+}
+
+[dir="rtl"] #whatsapp-modal {
+  right: auto;
+  left: 28px;
+}
+
+/* =========================================================================
+   MOBILE VIEW RULES: "IN MOBILE WILL SHOW LESS TEXT INFORMATIONS"
+   ========================================================================= */
+@media (max-width: 768px) {
+  /* Hide verbose, long desktop paragraphs */
+  .desktop-verbose {
+    display: none !important;
+  }
+  
+  /* Show concise mobile summaries and tags */
+  .mobile-concise {
+    display: block !important;
+  }
+
+  /* Compact spacing for mobile */
+  .hero-section {
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Compact service card layout */
+  .service-card {
+    padding: 18px !important;
+  }
+
+  .service-card p.desktop-text {
+    display: none !important;
+  }
+
+  .service-card p.mobile-text {
+    display: block !important;
+    font-size: 0.88rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Mobile bottom sticky bar */
+  #mobile-bottom-bar {
+    display: flex !important;
+  }
+
+  /* Adjust floating whatsapp position so it doesn't collide with bottom bar */
+  #floating-whatsapp-container {
+    bottom: 84px !important;
+    right: 18px !important;
+  }
+
+  #whatsapp-modal {
+    bottom: 150px !important;
+    right: 16px !important;
+    left: 16px !important;
+    width: auto !important;
+  }
+
+  [dir="rtl"] #floating-whatsapp-container {
+    left: 18px !important;
+    right: auto !important;
+  }
+
+  [dir="rtl"] #whatsapp-modal {
+    left: 16px !important;
+    right: 16px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-verbose {
+    display: block !important;
+  }
+  
+  .mobile-concise {
+    display: none !important;
+  }
+
+  .service-card p.desktop-text {
+    display: block !important;
+  }
+
+  .service-card p.mobile-text {
+    display: none !important;
+  }
+
+  #mobile-bottom-bar {
+    display: none !important;
+  }
+}
+
+/* Toast Notifications */
+#toast-notification {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1200;
+  transform: translateX(120%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#toast-notification.show {
+  transform: translateX(0);
+}
+
+[dir="rtl"] #toast-notification {
+  right: auto;
+  left: 24px;
+  transform: translateX(-120%);
+}
+
+[dir="rtl"] #toast-notification.show {
+  transform: translateX(0);
+}
